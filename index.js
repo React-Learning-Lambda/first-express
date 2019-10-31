@@ -8,6 +8,8 @@ app.use(cors())
 
 const port = process.env.PORT || 4001;
 
+app.use(express.static(__dirname + '/client/build'))
+
 app.get('/api/friends', (req, res) => {
     res.status(201).json([
         {
@@ -26,7 +28,7 @@ app.get('/api/friends', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.send('Go right ahead')
+    res.sendFile(__dirname + '/client/build/index.html')
 })
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
